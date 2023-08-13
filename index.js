@@ -64,7 +64,31 @@ class _{
     }
 
     //#region Collection methods [S]
+    static filter(arr, predicate){
+        const resultArr = [];
+        for (let a of arr){
+            let result = predicate(a);
 
+            if(result){
+                resultArr.push(a);
+            }
+        }
+        return resultArr;
+    }
+
+    static find(arr, predicate, fromIndex=0){
+        let resultObj;
+
+        for(let i = fromIndex; i < arr.length; i++){
+            let result = predicate(arr[i]);
+            if(result){
+                resultObj = arr[i];
+                break;
+            }
+        }
+
+        return resultObj;
+    }
     //#endregion
 }
 
