@@ -89,6 +89,76 @@ class _{
 
         return resultObj;
     }
+
+    static partition(arr, predicate){
+        const resultArr = [];
+        const filterResult = arr.map(predicate);
+        const resultThatDiffer = [];
+        const resultThatMatch = [];
+
+        filterResult.forEach((itm, idx) =>{
+            if(itm){
+                resultThatMatch.push(arr[idx]);
+            }else{
+                resultThatDiffer.push(arr[idx]);
+            }
+        });
+
+        resultArr.push(resultThatMatch);
+        resultArr.push(resultThatDiffer);
+
+        return resultArr;
+        
+    }
+
+    static shuffle(arr){
+        //So let's generate a random number
+        
+        const shuffledArr = [];
+        let randomNumber
+        while(arr.length){
+            randomNumber = Math.floor(Math.random() * arr.length);
+            shuffledArr.push(...arr.splice(randomNumber, 1));
+        }
+
+        return shuffledArr;
+    }
+    //#endregion
+
+    // #region mathMethod
+    
+    static mean(numArr){
+        if(numArr.length === 0) return 0;
+        const sum = numArr.reduce((acc, curr) => acc + curr, 0);
+        if(isNaN(sum))  return 0;
+        return sum/numArr.length;
+    }
+
+    static max(numArr){
+        if(numArr.length === 0) return 0;
+
+        let max = numArr[0];
+
+        numArr.forEach(itm =>{
+            if(!isNaN(itm) && itm > max){
+                max = itm;
+            }
+        });
+
+        return max;
+    }
+    // #endregion
+
+    //#region object methods
+    static keys(obj){
+        const keysArr = [];
+
+        for(let o in obj){
+            keysArr.push(o);
+        }
+
+        return keysArr;
+    }
     //#endregion
 }
 
@@ -105,6 +175,15 @@ const removeExArr = [
     {id:7, name: 'Mayank', gender: 'F'},
 ];
 const removeExFn = (n) => n.gender !== 'M';
+
+let products = [
+    {name: 'Milk', sold: true},
+    {name: 'Cream', sold: false},
+    {name: 'Bicycle', sold: true},
+    {name: 'Socks', sold: false}
+];
+
+let quizQuestions = [1, 2, 3, 4, 5, 6, 7, 8];
 
 
 
